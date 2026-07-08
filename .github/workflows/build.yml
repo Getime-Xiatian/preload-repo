@@ -1,0 +1,28 @@
+name: Build preload.so
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r29
+
+      - name: Build preload.so
+        run: |
+          cd exploit
+          make PROJECT=mydevice API=26
+
+      - name: Upload preload.so
+        uses: actions/upload-artifact@v4
+        with:
+          name: preload
+          path: exploit/build/mydevice/bin/preload.so

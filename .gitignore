@@ -1,0 +1,18 @@
+# CVE-2026-43499 preload exploit build
+
+# Binary
+*.so
+*.o
+*.elf
+
+# Build
+build/
+embed/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
